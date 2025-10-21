@@ -1,0 +1,152 @@
+    <!DOCTYPE html>
+    <html lang="de">
+    <head>
+        <script src="/libraries/package/dist/just-validate.production.min.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Formular mit allen Input-Typen</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+form {
+    display: grid;
+    gap: 15px;
+    max-width: 300px;
+}
+label {
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+}
+input {
+    margin-top: 5px;
+}
+.error-message {
+    color: red;
+    font-size: 0.9em;
+}
+</style>
+</head>
+<body>
+
+<h1>Formular mit allen Input-Typen</h1>
+
+<form id="Validation">
+
+    <label>Button:
+        <input type="button" value="Klick mich">
+    </label>
+
+    <label>Checkbox:
+        <input type="checkbox" name="checkbox1" value="Option1"> Option 1
+    </label>
+
+    <label>Color:
+        <input type="color" name="color1" value="#ff0000">
+    </label>
+
+    <label>Date:
+        <input type="date" name="date1">
+    </label>
+
+    <label>Datetime-Local:
+        <input type="datetime-local" name="datetime1">
+    </label>
+
+    <label>Email:
+        <input type="email" name="email" placeholder="beispiel@domain.com">
+    </label>
+
+    <label>File:
+        <input type="file" name="file1">
+    </label>
+
+    <input type="hidden" name="hiddenField" value="geheimerWert">
+
+    <label>Image (Submit):
+        <input type="image" src="https://via.placeholder.com/100" alt="Bild-Button">
+    </label>
+
+    <label>Month:
+        <input type="month" name="month1">
+    </label>
+
+    <label>Number:
+        <input type="number" name="number1" min="0" max="100" value="50">
+    </label>
+
+    <label>Password:
+        <input type="password" name="password" placeholder="Passwort">
+    </label>
+
+    <label>Radio Buttons:
+        <input type="radio" name="radioGroup" value="1"> 1
+        <input type="radio" name="radioGroup" value="2"> 2
+    </label>
+
+    <label>Range:
+        <input type="range" name="range1" min="0" max="100" value="50">
+    </label>
+
+    <label>Search:
+        <input type="search" name="search1" placeholder="Suchbegriff">
+    </label>
+
+    <label>Tel:
+        <input type="tel" name="tel1" placeholder="01234 567890">
+    </label>
+
+    <label>Text:
+        <input type="text" name="text1" placeholder="Text hier eingeben">
+    </label>
+
+    <label>Time:
+        <input type="time" name="time1">
+    </label>
+
+    <label>URL:
+        <input type="url" name="url1" placeholder="https://example.com">
+    </label>
+
+    <label>Week:
+        <input type="week" name="week1">
+    </label>
+
+    <label>Submit:
+        <input type="submit" value="Absenden">
+    </label>
+    
+    <label>Reset:
+        <input type="reset" value="Zurücksetzen">
+    </label>
+
+</form>
+
+<script>
+const validation = new JustValidate('#Validation');
+
+validation.addField('[name="email"]', [
+  { rule: 'required', errorMessage: 'E-Mail ist erforderlich' },
+  { rule: 'email', errorMessage: 'E-Mail muss gültig sein' },
+]);
+
+validation.addField('[name="password"]', [
+  { rule: 'required', errorMessage: 'Passwort ist erforderlich' },
+  { rule: 'minLength', value: 6, errorMessage: 'Mindestens 6 Zeichen' },
+]);
+
+validation.addField('[name="tel1"]', [
+  { rule: 'required', errorMessage: 'Telefonnummer ist erforderlich' },
+  { rule: 'number', errorMessage: 'Nur Zahlen erlaubt' },
+]);
+
+validation.onSuccess((event) => {
+  alert('Formular erfolgreich validiert!');
+  event.target.submit();
+});
+</script>
+
+</body>
+</html>
