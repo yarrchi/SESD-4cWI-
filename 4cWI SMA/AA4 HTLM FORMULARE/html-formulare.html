@@ -15,14 +15,6 @@ form {
     gap: 15px;
     max-width: 300px;
 }
-label {
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-}
-input {
-    margin-top: 5px;
-}
 .error-message {
     color: red;
     font-size: 0.9em;
@@ -65,8 +57,8 @@ input {
 
     <input type="hidden" name="hiddenField" value="geheimerWert">
 
-    <label>Image (Submit):
-        <input type="image" src="https://via.placeholder.com/100" alt="Bild-Button">
+    <label>Image:
+        <input type="image" alt="Bild-Button">
     </label>
 
     <label>Month:
@@ -74,7 +66,7 @@ input {
     </label>
 
     <label>Number:
-        <input type="number" name="number1" min="0" max="100" value="50">
+        <input type="number" name="number1">
     </label>
 
     <label>Password:
@@ -129,23 +121,87 @@ const validation = new JustValidate('#Validation');
 
 validation.addField('[name="email"]', [
   { rule: 'required', errorMessage: 'E-Mail ist erforderlich' },
-  { rule: 'email', errorMessage: 'E-Mail muss gültig sein' },
+  { rule: 'email', errorMessage: 'E-Mail muss gültig sein' }
 ]);
 
 validation.addField('[name="password"]', [
   { rule: 'required', errorMessage: 'Passwort ist erforderlich' },
-  { rule: 'minLength', value: 6, errorMessage: 'Mindestens 6 Zeichen' },
+  { rule: 'minLength', value: 6, errorMessage: 'Mindestens 6 Zeichen' }
 ]);
 
 validation.addField('[name="tel1"]', [
   { rule: 'required', errorMessage: 'Telefonnummer ist erforderlich' },
-  { rule: 'number', errorMessage: 'Nur Zahlen erlaubt' },
+  { rule: 'number', errorMessage: 'Nur Zahlen erlaubt' }
 ]);
+
+validation.addField('[name="text1"]', [
+  { rule: 'required', errorMessage: 'Text ist erforderlich' },
+  { rule: 'minLength', value: 2, errorMessage: 'Mindestens 2 Zeichen' }
+]);
+
+validation.addField('[name="date1"]', [
+  { rule: 'required', errorMessage: 'Datum ist erforderlich' }
+]);
+
+validation.addField('[name="datetime1"]', [
+  { rule: 'required', errorMessage: 'Datum/Uhrzeit ist erforderlich' }
+]);
+
+validation.addField('[name="month1"]', [
+  { rule: 'required', errorMessage: 'Monat ist erforderlich' }
+]);
+
+validation.addField('[name="week1"]', [
+  { rule: 'required', errorMessage: 'Woche ist erforderlich' }
+]);
+
+validation.addField('[name="time1"]', [
+  { rule: 'required', errorMessage: 'Uhrzeit ist erforderlich' }
+]);
+
+validation.addField('[name="color1"]', [
+  { rule: 'required', errorMessage: 'Farbe auswählen' }
+]);
+
+validation.addField('[name="number1"]', [
+  { rule: 'required', errorMessage: 'Zahl erforderlich' },
+  { rule: 'number', errorMessage: 'Nur Zahlen erlaubt' },
+  { rule: 'minNumber', value: 0, errorMessage: 'Mindestens 0' },
+  { rule: 'maxNumber', value: 100, errorMessage: 'Maximal 100' }
+]);
+
+validation.addField('[name="range1"]', [
+  { rule: 'required', errorMessage: 'Bitte Bereich wählen' }
+]);
+
+validation.addField('[name="url1"]', [
+  { rule: 'required', errorMessage: 'URL ist erforderlich' },
+  { rule: 'url', errorMessage: 'URL muss gültig sein' }
+]);
+
+validation.addField('[name="search1"]', [
+  { rule: 'required', errorMessage: 'Bitte Suchbegriff eingeben' }
+]);
+
+validation.addField('[name="radioGroup"]', [
+  { rule: 'required', errorMessage: 'Bitte eine Option wählen' }
+]);
+
+validation.addField('[name="checkbox1"]', [
+  { rule: 'required', errorMessage: 'Bitte Checkbox auswählen' }
+]);
+
+validation.addField('[name="file1"]', [
+  { rule: 'required', errorMessage: 'Bitte Datei auswählen' },
+  { rule: 'files', value: { maxSize: 3000000 }, errorMessage: 'Datei zu groß (max. 3 MB)' }
+]);
+
 
 validation.onSuccess((event) => {
   alert('Formular erfolgreich validiert!');
   event.target.submit();
 });
+
 </script>
 
 </body>
